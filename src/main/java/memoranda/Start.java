@@ -58,14 +58,22 @@ public class Start {
             new SLThread().start();
         }
         
-        //System.out.println(EventsScheduler.isEventScheduled());
-        if ((args.length == 0) || (!args[0].equals("-m"))) {
+        // SER316 
+        app = new App(false);
+        
+        argsZero(args);
+    }
+    
+    public static void argsZero(String[] args) {
+        if (args.length == 0) {
             app = new App(true);
         }
-        else
-            app = new App(false);
     }
+    
+    
 }
+
+
 
 class SLThread extends Thread {
     

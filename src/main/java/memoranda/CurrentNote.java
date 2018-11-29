@@ -3,16 +3,19 @@ package main.java.memoranda;
 import java.util.Collection;
 import java.util.Vector;
 
+import main.java.memoranda.interfaces.INote;
+
 public class CurrentNote {
 
-	private static Note currentNote = null;
+	private static INote currentNote = null;
     private static Vector noteListeners = new Vector();
 
-    public static Note get() {
+    //TASK 2-1 SMELL WITHIN A CLASS
+    public static INote getNote() {
         return currentNote;
     }
 
-    public static void set(Note note, boolean toSaveCurrentNote) {
+    public static void set(INote note, boolean toSaveCurrentNote) {
         noteChanged(note, toSaveCurrentNote);
         currentNote = note;
     }
@@ -30,7 +33,7 @@ public class CurrentNote {
         return noteListeners;
     }
 
-    private static void noteChanged(Note note, boolean toSaveCurrentNote) {
+    private static void noteChanged(INote note, boolean toSaveCurrentNote) {
         for (int i = 0; i < noteListeners.size(); i++) {
             ((NoteListener)noteListeners.get(i)).noteChange(note,toSaveCurrentNote);
 		}
